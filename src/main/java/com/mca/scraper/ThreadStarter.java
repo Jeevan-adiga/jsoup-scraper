@@ -14,12 +14,12 @@ import com.mca.utils.Preference;
 class ThreadStarter {
 	
     public static void main (String[] args) {
-    	
-    	long initialValue = Long.parseLong(Preference.getPreference("scrape.initialRecord"));
+
+		long initialValue = Long.parseLong(Preference.getPreference("scrape.initialRecord"));
     	long recordCount =Long.parseLong(Preference.getPreference("scrape.recordsCount"));
-    	int parellel = Integer.parseInt(Preference.getPreference("scrape.threadCount"));
+    	int parallel = Integer.parseInt(Preference.getPreference("scrape.threadCount"));
     	
-    	ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(parellel);
+    	ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(parallel);
     	for (long i = 0; i < recordCount; i++) {
     		String din = StringUtils.leftPad(String.valueOf(initialValue), 8, "0");
     		initialValue = initialValue + 1;

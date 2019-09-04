@@ -19,9 +19,10 @@ public class CsvWriterUtils {
 	 * @param result
 	 */
 	public static void writeResultsDataLineByLine(List<ResultsRecord> result) {
-		
+
+		String scrapeResultPath = "result.csv";
 		try {
-	     Writer writer = new FileWriter("target/result.csv", true);
+	     Writer writer = new FileWriter(scrapeResultPath, true);
 	     StatefulBeanToCsv<ResultsRecord> beanToCsv = new StatefulBeanToCsvBuilder<ResultsRecord>(writer).build();
 	     beanToCsv.write(result);
 	     writer.close();
@@ -41,18 +42,17 @@ public class CsvWriterUtils {
 	 * @param error
 	 */
 	public static void writeErrorDataLineByLine(ErrorDetails error) {
+		String scrapeErrorPath = "error.csv";
 		try {
-		     Writer writer = new FileWriter("target/error.csv", true);
+		     Writer writer = new FileWriter(scrapeErrorPath, true);
 		     StatefulBeanToCsv<ErrorDetails> beanToCsv = new StatefulBeanToCsvBuilder<ErrorDetails>(writer).build();
 		     beanToCsv.write(error);
 		     writer.close();
 			} catch (IOException e) {
 				e.printStackTrace();
 			} catch (CsvDataTypeMismatchException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (CsvRequiredFieldEmptyException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 	}

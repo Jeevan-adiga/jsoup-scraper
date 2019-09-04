@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.Connection.Method;
 import org.jsoup.Connection.Response;
@@ -52,21 +53,29 @@ class McaScraper implements Runnable {
     	// send din and parse response to Document object
 		Document document = null;
 		try {
+
+			Response loginForm = Jsoup.connect(baseUrl + "/mcafoportal/viewDirectorMasterData.do")
+					.method(Connection.Method.GET)
+					.execute();
+
 			Response response = 
-	                Jsoup.connect(baseUrl)
+	                Jsoup.connect(baseUrl + "/mcafoportal/showdirectorMasterData.do")
 	                .userAgent(userAgent)
 	                .timeout(120 * 1000)
 	                .method(Method.POST)
+					.header("Content-Type", "application/x-www-form-urlencoded")
+					.header("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3")
 	                .data("din", dIn)
-	                .data("showdirectorMasterData_0", "Submit")
+	                .data("showdirectorMasterData", "Submit")
+					.cookies(loginForm.cookies())
 	                .followRedirects(true)
 	                .execute();
-	        
+
 			Thread.sleep(2000);
 			
 	        //parse the document from response
 	        document = response.parse();
-			System.out.println(document.outerHtml());
+//			System.out.println(document.outerHtml());
 		} catch (IOException ex) {
 			ex.printStackTrace();
 			ErrorDetails error = new ErrorDetails();
@@ -120,7 +129,7 @@ class McaScraper implements Runnable {
 
         // fetch llp records and write to csv
         List<ResultsRecord> llpRecords = getRecordsFromTable(din.ownText(), name.ownText(), "LLP", llpTable);
-        CsvWriterUtils.writeResultsDataLineByLine(llpRecords);
+		CsvWriterUtils.writeResultsDataLineByLine(llpRecords);
 	}
 	
     /**

@@ -2,6 +2,7 @@ package com.mca.utils;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.Properties;
 
 public class Preference {
@@ -15,7 +16,7 @@ public class Preference {
 	 * @return
 	 */
 	public static String getPreference(final String property){
-		
+
 		if( System.getProperties().containsKey(property) ){
 			return System.getProperty( property );
 		}
@@ -30,13 +31,11 @@ public class Preference {
 	
 	private static String readConfig(final String property) {
 
-		final String configPath = "./src/main/resources/config/defaults.properties";
-		final File configFile = new File( configPath );
-		if(configFile.exists()){
+		final InputStream input = ClassLoader.getSystemClassLoader().getResourceAsStream("config/defaults.properties");
+		if(input!=null){
 			try {
-				final FileInputStream fileInput = new FileInputStream(configFile);
 				final Properties properties = new Properties();
-				properties.load(fileInput);
+				properties.load(input);
 				return properties.getProperty(property);
 			} catch (final Exception e) {
 			}
