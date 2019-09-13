@@ -3,28 +3,24 @@
 Simple multi-thread scraper implementation to extract data into csv file
 
 ### What is this repository for? ###
-* This project is used to scrape a website to retrieve records 
-* Records extracted will be saved in csv format.
-* It is implemented to support parallel execution with multiple threads.
-
-* Version
-1.0.0 - initial implementation
+- This project is used to scrape a website to retrieve records 
+- Records extracted will be saved in csv format.
+- It is implemented to support parallel execution with multiple threads.
 
 ### How do I get set up? ###
-* Dependencies
-org.jsoup:jsoup			-> used for html parsing
-com.opencsv:opencsv		-> used for writing to csv file
-org.apache.commons:commons-lang3-> used for working with string
+**Dependencies**
+- `org.jsoup:jsoup` used for html parsing`
+- `com.opencsv:opencsv` used for writing to csv file
+- `org.apache.commons:commons-lang3` used for working with string
 
-* Local Deployment instructions
-  mvn clean install
-  mvn exec:java -Dscrape.initialRecord=870801 -Dscrape.recordsCount=5000 -Dscrape.threadCount=50
-
-  Generate jar file -> mvn clean package
-  Run using the program -> java -jar -Dscrape.baseurl={baseUrl} -Dscrape.initialRecord=870801 -Dscrape.recordsCount=1 -Dscrape.threadCount=1 jsoup-scraper-1.0.0-jar-with-dependencies.jar
+**Local Deployment instructions**
+	`git clone https://github.com/Jeevan-adiga/jsoup-scraper.git`
+	`mvn clean install`			
+	`mvn exec:java -Dscrape.initialRecord=870801 -Dscrape.recordsCount=5000 -Dscrape.threadCount=50` 		// to run scraper without creating jar
+  `mvn clean package` 				// Generate jar file
+  `java -jar -Dscrape.baseurl={baseUrl} -Dscrape.initialRecord=870801 -Dscrape.recordsCount=1 -Dscrape.threadCount=1 jsoup-scraper-1.0.0-jar-with-dependencies.jar`						 // Run scraper using the program
   
-  
-Note:
+**NOTE:**
   scrape.initialRecord <- what is the initial record number
   scrape.recordsCount <- how many records to be scraped
   scrape.threadCount <- how many threads to be run in parellel
