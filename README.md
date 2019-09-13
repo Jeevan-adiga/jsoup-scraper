@@ -21,7 +21,7 @@ org.apache.commons:commons-lang3-> used for working with string
   mvn exec:java -Dscrape.initialRecord=870801 -Dscrape.recordsCount=5000 -Dscrape.threadCount=50
 
   Generate jar file -> mvn clean package
-  Run using the program -> java -jar -Dscrape.baseurl=<baseUrl> -Dscrape.initialRecord=870801 -Dscrape.recordsCount=1 -Dscrape.threadCount=1 jsoup-scraper-1.0.0-jar-with-dependencies.jar
+  Run using the program -> java -jar -Dscrape.baseurl={baseUrl} -Dscrape.initialRecord=870801 -Dscrape.recordsCount=1 -Dscrape.threadCount=1 jsoup-scraper-1.0.0-jar-with-dependencies.jar
   
   
 Note:
@@ -32,7 +32,7 @@ Note:
 ### Deployment to aws linux machine and running scraper ###
 1. Change permission of pen file and ssh into server
 	chmod 400 certificate.pem
-	ssh -i <pemfile> <username>@<ipaddress>
+	ssh -i {pemfile} {username}@{ipaddress}
 2. Make new directory and cd into that directory
 	mkdir scraper
 	cd scraper
@@ -43,12 +43,12 @@ Note:
   	sudo apt install maven          // install maven
   	mvn -version                    // check maven installation
 4. copy scraper package(jar) file into aws machine
-    scp -i certificate.pem jsoup-scraper-1.0.0-jar-with-dependencies.jar <username>@<ipaddress>:<path>/scraper
+    scp -i certificate.pem jsoup-scraper-1.0.0-jar-with-dependencies.jar {username}@{ipaddress}:{path}/scraper
 5. Run scraper
-$java -jar -Dscrape.baseurl=http://www.mca.gov.in -Dscrape.initialRecord=870801 -Dscrape.recordsCount=1 -Dscrape.threadCount=1 jsoup-scraper-1.0.0-jar-with-dependencies.jar
+$java -jar -Dscrape.baseurl={baseUrl} -Dscrape.initialRecord=870801 -Dscrape.recordsCount=1 -Dscrape.threadCount=1 jsoup-scraper-1.0.0-jar-with-dependencies.jar
 6. collect results
 	result.csv  <- records for which data is extracted
 	error.csv   <- records for which records are not present/application provided error msg
 7. Download files
-	scp -i certificate.pem <username>@<ipaddress>:<path>/result.csv .
-	scp -i certificate.pem <username>@<ipaddress>:<path>/error.csv .
+	scp -i certificate.pem {username}@{ipaddress}:{path}/result.csv .
+	scp -i certificate.pem {username}@{ipaddress}:{path}/error.csv .
