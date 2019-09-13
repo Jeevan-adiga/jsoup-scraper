@@ -4,12 +4,10 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.mca</groupId>
-	<artifactId>McaScraper</artifactId>
+	<artifactId>jsoup-scraper</artifactId>
 	<version>1.0.0</version>
 	<packaging>jar</packaging>
-
-	<name>McaScraper</name>
-	<url>http://maven.apache.org</url>
+	<name>jsoup-scraper</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
