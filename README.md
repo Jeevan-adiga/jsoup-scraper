@@ -21,7 +21,7 @@ org.apache.commons:commons-lang3-> used for working with string
   mvn exec:java -Dscrape.initialRecord=870801 -Dscrape.recordsCount=5000 -Dscrape.threadCount=50
 
   Generate jar file -> mvn clean package
-  Run using the program -> java -jar -Dscrape.baseurl=http://www.mca.gov.in -Dscrape.initialRecord=870801 -Dscrape.recordsCount=1 -Dscrape.threadCount=1 jsoup-scraper-1.0.0-jar-with-dependencies.jar
+  Run using the program -> java -jar -Dscrape.baseurl=<baseUrl> -Dscrape.initialRecord=870801 -Dscrape.recordsCount=1 -Dscrape.threadCount=1 jsoup-scraper-1.0.0-jar-with-dependencies.jar
   
   
 Note:
