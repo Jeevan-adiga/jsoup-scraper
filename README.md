@@ -1,5 +1,7 @@
 # jsoup-scraper #
 
+![Java CI](https://github.com/Jeevan-adiga/jsoup-scraper/workflows/Java%20CI/badge.svg)
+
 Simple multi-thread scraper implementation to extract data into csv file
 
 ### What is this repository for? ###
